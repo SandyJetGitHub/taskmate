@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block  title%}
+    <title>Edit-Home </title>
+ {% endblock  %}
+
+ {% block content %}
+
+  <div class="container">
+    {% if task_obj.manage == request.user %}
+        <form method="POST">
+            {% csrf_token %}
+            </br>
+          <div class="form-group">
+                  <input type="text" class="form-control col-lg-6" name="task" placeholder="{{task_obj.task}}" value="{{task_obj.task}}"><br>
+                  <input type="hidden" name="done" placeholder="{{task_obj.done}}" value="{{task_obj.done}}"><br>
+                  <button type="submit" class="btn btn-primary">Update Task</button>
+          </div>
+      </form>
+    {%else%}
+        <p>Access Denied</p>
+    {% endif %}
+  </div>
+
+{% endblock content %}
